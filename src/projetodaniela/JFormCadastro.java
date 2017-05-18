@@ -4,17 +4,18 @@
  * and open the template in the editor.
  */
 package projetodaniela;
+import static javax.swing.JOptionPane.*;
 
 /**
  *
  * @author aluno
  */
-public class JFormConsulta extends javax.swing.JFrame {
+public class JFormCadastro extends javax.swing.JFrame {
 
     /**
      * Creates new form JForm_Consulta
      */
-    public JFormConsulta() {
+    public JFormCadastro() {
         initComponents();
     }
 
@@ -31,12 +32,18 @@ public class JFormConsulta extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         cabecalho1 = new javax.swing.JLabel();
-        nome = new javax.swing.JLabel();
-        endereco = new javax.swing.JLabel();
-        fone = new javax.swing.JLabel();
-        email = new javax.swing.JLabel();
-        cpf = new javax.swing.JLabel();
-        registroProfissional = new javax.swing.JLabel();
+        nomeLabel = new javax.swing.JLabel();
+        enderecoLabel = new javax.swing.JLabel();
+        foneLabel = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
+        cpfLabel = new javax.swing.JLabel();
+        registroProfissionalLabel = new javax.swing.JLabel();
+        nome = new javax.swing.JTextField();
+        endereco = new javax.swing.JTextField();
+        fone = new javax.swing.JFormattedTextField();
+        cpf = new javax.swing.JFormattedTextField();
+        registroProfissional = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         titulacao = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -46,6 +53,7 @@ public class JFormConsulta extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         publicacoes = new javax.swing.JTextPane();
         cabecalho3 = new javax.swing.JLabel();
+        salvar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -65,17 +73,17 @@ public class JFormConsulta extends javax.swing.JFrame {
         cabecalho1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cabecalho1.setText("Dados Pessoais");
 
-        nome.setText("Nome:");
+        nomeLabel.setText("Nome:");
 
-        endereco.setText("Endereço:");
+        enderecoLabel.setText("Endereço:");
 
-        fone.setText("Fone:");
+        foneLabel.setText("Fone:");
 
-        email.setText("E-mail:");
+        emailLabel.setText("E-mail:");
 
-        cpf.setText("CPF:");
+        cpfLabel.setText("CPF:");
 
-        registroProfissional.setText("Registro Profissional:");
+        registroProfissionalLabel.setText("Registro Profissional:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -84,15 +92,30 @@ public class JFormConsulta extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nome)
-                    .addComponent(endereco)
-                    .addComponent(fone)
-                    .addComponent(email)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nomeLabel)
+                            .addComponent(enderecoLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(endereco, javax.swing.GroupLayout.DEFAULT_SIZE, 309, Short.MAX_VALUE)
+                            .addComponent(nome)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cpf)
-                        .addGap(137, 137, 137)
-                        .addComponent(registroProfissional)))
-                .addContainerGap(109, Short.MAX_VALUE))
+                        .addComponent(cpfLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(registroProfissionalLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(registroProfissional, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(foneLabel)
+                            .addComponent(emailLabel))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fone)
+                            .addComponent(email)))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(cabecalho1)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -102,17 +125,27 @@ public class JFormConsulta extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(cabecalho1)
                 .addGap(18, 18, 18)
-                .addComponent(nome)
-                .addGap(18, 18, 18)
-                .addComponent(endereco)
-                .addGap(18, 18, 18)
-                .addComponent(fone)
-                .addGap(18, 18, 18)
-                .addComponent(email)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nomeLabel)
+                    .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cpf)
-                    .addComponent(registroProfissional))
+                    .addComponent(enderecoLabel)
+                    .addComponent(endereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(foneLabel)
+                    .addComponent(fone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(emailLabel)
+                    .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cpfLabel)
+                    .addComponent(registroProfissionalLabel)
+                    .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(registroProfissional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -172,16 +205,9 @@ public class JFormConsulta extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         jScrollPane4.setViewportView(experienciaRelevante);
@@ -190,6 +216,13 @@ public class JFormConsulta extends javax.swing.JFrame {
 
         cabecalho3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cabecalho3.setText("Publicações");
+
+        salvar.setText("Salvar");
+        salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,7 +238,10 @@ public class JFormConsulta extends javax.swing.JFrame {
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cabecalho3)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(salvar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -223,11 +259,43 @@ public class JFormConsulta extends javax.swing.JFrame {
                 .addComponent(cabecalho3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(salvar)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
+        // Checar se todos os campos estão preenchidos.
+        if ("".equals(nome.getText()) ||
+            "".equals(endereco.getText()) ||
+            "".equals(email.getText()) ||
+            "".equals(registroProfissional.getText()) ||
+            "".equals(fone.getText()) ||
+            "".equals(cpf.getText()) ) {
+            showMessageDialog(null, "Todos os campos devem ser preenchidos.", "Erro", ERROR_MESSAGE);
+        }
+        else {
+            // Instanciar um currículo
+            Curriculo novoCurriculo = new Curriculo();
+            novoCurriculo.setNome(nome.getText());
+            novoCurriculo.setEndereco(endereco.getText());
+            novoCurriculo.setEmail(email.getText());
+            novoCurriculo.setRegistroProfissional(registroProfissional.getText());
+            novoCurriculo.setFone(Integer.parseInt(fone.getText()));
+            novoCurriculo.setCpf(Integer.parseInt(cpf.getText()));
+
+            // Cadastrar no ArrayList
+            JFormApp.curriculos.add(novoCurriculo);
+            showMessageDialog(null, "Cadastro realizado com sucesso.", "Sucesso", 1);
+
+            // Fechar janela
+            setVisible(false);
+            dispose();
+        }
+    }//GEN-LAST:event_salvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,38 +314,40 @@ public class JFormConsulta extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFormConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFormCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFormConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFormCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFormConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFormCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFormConsulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFormCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFormConsulta().setVisible(true);
+                new JFormCadastro().setVisible(true);
             }
         });
-    }
-
-    public static void atualizar() {
-        //nome.setText();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel cabecalho1;
     private javax.swing.JLabel cabecalho3;
-    private javax.swing.JLabel cpf;
-    private javax.swing.JLabel email;
-    private javax.swing.JLabel endereco;
+    private javax.swing.JFormattedTextField cpf;
+    private javax.swing.JLabel cpfLabel;
+    private javax.swing.JTextField email;
+    private javax.swing.JLabel emailLabel;
+    private javax.swing.JTextField endereco;
+    private javax.swing.JLabel enderecoLabel;
     private javax.swing.JTable experienciaDocente;
     private javax.swing.JTable experienciaRelevante;
-    private javax.swing.JLabel fone;
+    private javax.swing.JFormattedTextField fone;
+    private javax.swing.JLabel foneLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -285,9 +355,12 @@ public class JFormConsulta extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel nome;
+    private javax.swing.JTextField nome;
+    private javax.swing.JLabel nomeLabel;
     private javax.swing.JTextPane publicacoes;
-    private javax.swing.JLabel registroProfissional;
+    private javax.swing.JTextField registroProfissional;
+    private javax.swing.JLabel registroProfissionalLabel;
+    private javax.swing.JButton salvar;
     private javax.swing.JTable titulacao;
     // End of variables declaration//GEN-END:variables
 }
