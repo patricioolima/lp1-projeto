@@ -46,6 +46,8 @@ public class JFormCadastro extends javax.swing.JFrame {
         email = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         titulacao = new javax.swing.JTable();
+        removerTitulacao = new javax.swing.JButton();
+        adicionarTitulacao = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         experienciaDocente = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -54,6 +56,10 @@ public class JFormCadastro extends javax.swing.JFrame {
         publicacoes = new javax.swing.JTextPane();
         cabecalho3 = new javax.swing.JLabel();
         salvar = new javax.swing.JButton();
+        adicionarExperienciaDocente = new javax.swing.JButton();
+        removerExperienciaDocente = new javax.swing.JButton();
+        adicionarExperienciaRelevante = new javax.swing.JButton();
+        removerExperienciaRelevante = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -68,7 +74,7 @@ public class JFormCadastro extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         cabecalho1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cabecalho1.setText("Dados Pessoais");
@@ -84,6 +90,57 @@ public class JFormCadastro extends javax.swing.JFrame {
         cpfLabel.setText("CPF:");
 
         registroProfissionalLabel.setText("Registro Profissional:");
+
+        titulacao.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Titulação"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(titulacao);
+
+        removerTitulacao.setText("Remover Item Selecionado");
+        removerTitulacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerTitulacaoActionPerformed(evt);
+            }
+        });
+
+        adicionarTitulacao.setText("Adicionar Titulação");
+
+        experienciaDocente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Experiência Profissional Docente"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(experienciaDocente);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -107,7 +164,7 @@ public class JFormCadastro extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(registroProfissionalLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(registroProfissional, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                        .addComponent(registroProfissional))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(foneLabel)
@@ -116,8 +173,15 @@ public class JFormCadastro extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fone)
                             .addComponent(email)))))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(cabecalho1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cabecalho1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(adicionarTitulacao, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(removerTitulacao, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -146,50 +210,15 @@ public class JFormCadastro extends javax.swing.JFrame {
                     .addComponent(registroProfissionalLabel)
                     .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(registroProfissional, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(removerTitulacao)
+                    .addComponent(adicionarTitulacao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        titulacao.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
-            },
-            new String [] {
-                "Titulação"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(titulacao);
-
-        experienciaDocente.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
-            },
-            new String [] {
-                "Experiência Profissional Docente"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(experienciaDocente);
 
         experienciaRelevante.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -224,6 +253,24 @@ public class JFormCadastro extends javax.swing.JFrame {
             }
         });
 
+        adicionarExperienciaDocente.setText("Adicionar Experiência");
+
+        removerExperienciaDocente.setText("Remover Item Selecionado");
+        removerExperienciaDocente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerExperienciaDocenteActionPerformed(evt);
+            }
+        });
+
+        adicionarExperienciaRelevante.setText("Adicionar Experiência");
+
+        removerExperienciaRelevante.setText("Remover Item Selecionado");
+        removerExperienciaRelevante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerExperienciaRelevanteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -232,16 +279,22 @@ public class JFormCadastro extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(salvar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(adicionarExperienciaDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(removerExperienciaDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cabecalho3)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(salvar)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(adicionarExperienciaRelevante, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(removerExperienciaRelevante, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -249,13 +302,17 @@ public class JFormCadastro extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(adicionarExperienciaDocente)
+                    .addComponent(removerExperienciaDocente))
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(adicionarExperienciaRelevante)
+                    .addComponent(removerExperienciaRelevante))
+                .addGap(24, 24, 24)
                 .addComponent(cabecalho3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,6 +354,18 @@ public class JFormCadastro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_salvarActionPerformed
 
+    private void removerTitulacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerTitulacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removerTitulacaoActionPerformed
+
+    private void removerExperienciaDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerExperienciaDocenteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removerExperienciaDocenteActionPerformed
+
+    private void removerExperienciaRelevanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerExperienciaRelevanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removerExperienciaRelevanteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -336,6 +405,9 @@ public class JFormCadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton adicionarExperienciaDocente;
+    private javax.swing.JButton adicionarExperienciaRelevante;
+    private javax.swing.JButton adicionarTitulacao;
     private javax.swing.JLabel cabecalho1;
     private javax.swing.JLabel cabecalho3;
     private javax.swing.JFormattedTextField cpf;
@@ -360,6 +432,9 @@ public class JFormCadastro extends javax.swing.JFrame {
     private javax.swing.JTextPane publicacoes;
     private javax.swing.JTextField registroProfissional;
     private javax.swing.JLabel registroProfissionalLabel;
+    private javax.swing.JButton removerExperienciaDocente;
+    private javax.swing.JButton removerExperienciaRelevante;
+    private javax.swing.JButton removerTitulacao;
     private javax.swing.JButton salvar;
     private javax.swing.JTable titulacao;
     // End of variables declaration//GEN-END:variables

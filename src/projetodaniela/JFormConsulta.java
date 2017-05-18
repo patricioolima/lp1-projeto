@@ -60,7 +60,7 @@ public class JFormConsulta extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         cabecalho1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cabecalho1.setText("Dados Pessoais");
