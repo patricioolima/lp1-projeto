@@ -120,6 +120,11 @@ public class JFormCadastro extends javax.swing.JFrame {
         });
 
         adicionarTitulacao.setText("Adicionar Titulação");
+        adicionarTitulacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarTitulacaoActionPerformed(evt);
+            }
+        });
 
         experienciaDocente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -159,8 +164,8 @@ public class JFormCadastro extends javax.swing.JFrame {
                             .addComponent(nome)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(cpfLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(registroProfissionalLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -216,7 +221,7 @@ public class JFormCadastro extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(removerTitulacao)
                     .addComponent(adicionarTitulacao))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -254,6 +259,11 @@ public class JFormCadastro extends javax.swing.JFrame {
         });
 
         adicionarExperienciaDocente.setText("Adicionar Experiência");
+        adicionarExperienciaDocente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarExperienciaDocenteActionPerformed(evt);
+            }
+        });
 
         removerExperienciaDocente.setText("Remover Item Selecionado");
         removerExperienciaDocente.addActionListener(new java.awt.event.ActionListener() {
@@ -263,6 +273,11 @@ public class JFormCadastro extends javax.swing.JFrame {
         });
 
         adicionarExperienciaRelevante.setText("Adicionar Experiência");
+        adicionarExperienciaRelevante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarExperienciaRelevanteActionPerformed(evt);
+            }
+        });
 
         removerExperienciaRelevante.setText("Remover Item Selecionado");
         removerExperienciaRelevante.addActionListener(new java.awt.event.ActionListener() {
@@ -312,13 +327,13 @@ public class JFormCadastro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(adicionarExperienciaRelevante)
                     .addComponent(removerExperienciaRelevante))
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addComponent(cabecalho3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(salvar)
-                .addContainerGap())
+                .addGap(6, 6, 6))
         );
 
         pack();
@@ -365,6 +380,24 @@ public class JFormCadastro extends javax.swing.JFrame {
     private void removerExperienciaRelevanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerExperienciaRelevanteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_removerExperienciaRelevanteActionPerformed
+
+    private void adicionarTitulacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarTitulacaoActionPerformed
+        JFormTitulacao janelaTitulacao = new JFormTitulacao();
+        pack();
+        janelaTitulacao.setVisible(true);
+    }//GEN-LAST:event_adicionarTitulacaoActionPerformed
+
+    private void adicionarExperienciaDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarExperienciaDocenteActionPerformed
+        JFormExperiencia janelaExperiencia = new JFormExperiencia();
+        pack();
+        janelaExperiencia.setVisible(true);
+    }//GEN-LAST:event_adicionarExperienciaDocenteActionPerformed
+
+    private void adicionarExperienciaRelevanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarExperienciaRelevanteActionPerformed
+        JFormExperiencia janelaExperiencia = new JFormExperiencia();
+        pack();
+        janelaExperiencia.setVisible(true);
+    }//GEN-LAST:event_adicionarExperienciaRelevanteActionPerformed
 
     /**
      * @param args the command line arguments

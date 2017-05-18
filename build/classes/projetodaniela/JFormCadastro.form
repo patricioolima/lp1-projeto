@@ -92,13 +92,13 @@
                   <Component id="adicionarExperienciaRelevante" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="removerExperienciaRelevante" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="cabecalho3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane5" min="-2" pref="169" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jScrollPane5" min="-2" pref="62" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="salvar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -125,8 +125,8 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="cpfLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cpf" min="-2" pref="123" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="cpf" min="-2" pref="117" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="registroProfissionalLabel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -198,7 +198,7 @@
                       <Component id="removerTitulacao" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="adicionarTitulacao" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="10" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="32767" attributes="0"/>
                   <Component id="jScrollPane3" min="-2" pref="91" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -285,6 +285,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Adicionar Titula&#xe7;&#xe3;o"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adicionarTitulacaoActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane3">
           <AuxValues>
@@ -355,6 +358,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Adicionar Experi&#xea;ncia"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adicionarExperienciaDocenteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="removerExperienciaDocente">
       <Properties>
@@ -368,6 +374,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Adicionar Experi&#xea;ncia"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adicionarExperienciaRelevanteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="removerExperienciaRelevante">
       <Properties>
