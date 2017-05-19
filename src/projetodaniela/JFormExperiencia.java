@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package projetodaniela;
+import static javax.swing.JOptionPane.*;
 
 /**
  *
@@ -11,11 +12,17 @@ package projetodaniela;
  */
 public class JFormExperiencia extends javax.swing.JFrame {
 
+    // Esse mesmo JForm é reutilizado para adicionar experiência docente
+    // tanto quanto relevante. Para diferenciar, usamos uma variável de classe:
+    // 0 - doscente, 1 - relevante.
+    public static int tipo;
+    
     /**
      * Creates new form JFormTitulacao
      */
-    public JFormExperiencia() {
+    public JFormExperiencia(int t) {
         initComponents();
+        tipo = t;
     }
 
     /**
@@ -34,8 +41,8 @@ public class JFormExperiencia extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        anoInicio = new javax.swing.JFormattedTextField();
-        anoConclusao = new javax.swing.JFormattedTextField();
+        dataInicio = new javax.swing.JFormattedTextField();
+        dataTermino = new javax.swing.JFormattedTextField();
         descricao = new javax.swing.JTextField();
         instituicao = new javax.swing.JTextField();
         cidade = new javax.swing.JTextField();
@@ -46,7 +53,7 @@ public class JFormExperiencia extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Experiência");
 
-        jLabel1.setText("Ano de Início: ");
+        jLabel1.setText("Data de Início: ");
 
         jLabel2.setText("Instituição:");
 
@@ -59,9 +66,18 @@ public class JFormExperiencia extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Adicionar Experiência");
 
-        jLabel7.setText("Ano de Conclusão:");
+        jLabel7.setText("Data de Conclusão:");
+
+        dataInicio.setFormatterFactory(JFormApp.mascaraData());
+
+        dataTermino.setFormatterFactory(JFormApp.mascaraData());
 
         salvar.setText("Salvar");
+        salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvarActionPerformed(evt);
+            }
+        });
 
         cancelar.setText("Cancelar");
         cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -92,8 +108,8 @@ public class JFormExperiencia extends javax.swing.JFrame {
                                 .addComponent(jLabel5))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(anoConclusao)
-                                .addComponent(anoInicio)
+                                .addComponent(dataTermino)
+                                .addComponent(dataInicio)
                                 .addComponent(cidade)
                                 .addComponent(estado)
                                 .addComponent(instituicao, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -109,10 +125,10 @@ public class JFormExperiencia extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(anoInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(anoConclusao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dataTermino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -146,6 +162,43 @@ public class JFormExperiencia extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_cancelarActionPerformed
 
+    private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
+        // Certificar que todos os campos foram preenchidos
+        if ("  /  /    ".equals(dataInicio.getText()) ||
+            "  /  /    ".equals(dataTermino.getText()) ||
+            "".equals(descricao.getText()) ||
+            "".equals(instituicao.getText()) ||
+            "".equals(cidade.getText()) ||
+            "".equals(estado.getText()) ) {
+            showMessageDialog(null, "Todos os campos devem ser preenchidos.", "Erro", ERROR_MESSAGE);
+        }
+        else {
+            Experiencia e = new Experiencia();
+            e.setDataInicio(dataInicio.getText());
+            e.setDataTermino(dataTermino.getText());
+            e.setDescricao(descricao.getText());
+            e.setInstituicao(instituicao.getText());
+            e.setCidade(cidade.getText());
+            e.setEstado(estado.getText());
+            
+            switch (tipo) {
+                case 0:
+                    JFormCadastro.adicionarExperienciaDocente(e);
+                    break;
+                case 1:
+                    JFormCadastro.adicionarExperienciaRelevante(e);
+                    break;
+                default:
+                    // wtf
+                    System.exit(-1);
+            }
+            
+            // Fechar janela
+            setVisible(false);
+            dispose();
+        }
+    }//GEN-LAST:event_salvarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -177,16 +230,16 @@ public class JFormExperiencia extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFormExperiencia().setVisible(true);
+                new JFormExperiencia(-1).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField anoConclusao;
-    private javax.swing.JFormattedTextField anoInicio;
     private javax.swing.JButton cancelar;
     private javax.swing.JTextField cidade;
+    private javax.swing.JFormattedTextField dataInicio;
+    private javax.swing.JFormattedTextField dataTermino;
     private javax.swing.JTextField descricao;
     private javax.swing.JTextField estado;
     private javax.swing.JTextField instituicao;

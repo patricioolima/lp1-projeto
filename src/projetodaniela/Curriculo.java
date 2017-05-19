@@ -12,13 +12,50 @@ import java.util.*;
  */
 public class Curriculo {
     // Atributos
-    private String nome, endereco, email, registroProfissional, publicacoes;
-    private int fone, cpf;
+    private String nome, endereco, email, registroProfissional, publicacoes, fone, cpf;
+    //private int fone, cpf;
     
-    ArrayList<Titulacao> titulacoes;
-    ArrayList<Experiencia> experienciaDocente;
-    ArrayList<Experiencia> experienciaRelevante;
+    private ArrayList<Titulacao> titulacoes = new ArrayList<>();
+    private ArrayList<Experiencia> experienciaDocente = new ArrayList<>();
+    private ArrayList<Experiencia> experienciaRelevante = new ArrayList<>();
+    
+    // Métodos para manusear os ArrayLists
+    public void addTitulacao(Titulacao t) {
+        titulacoes.add(t);
+    }
+    
+    public void addExperienciaDocente(Experiencia e) {
+        experienciaDocente.add(e);
+    }
+    
+    public void addExperienciaRelevante(Experiencia e) {
+        experienciaRelevante.add(e);
+    }
+    
+    public ArrayList<Titulacao> getTitulacoes() {
+        return titulacoes;
+    }
+    
+    public ArrayList<Experiencia> getExperienciaDocente() {
+        return experienciaDocente;
+    }
+    
+    public ArrayList<Experiencia> getExperienciaRelevante() {
+        return experienciaRelevante;
+    }
+    
+    public void setTitulacoes(ArrayList<Titulacao> titulacoes) {
+        this.titulacoes = titulacoes;
+    }
 
+    public void setExperienciaDocente(ArrayList<Experiencia> experienciaDocente) {
+        this.experienciaDocente = experienciaDocente;
+    }
+
+    public void setExperienciaRelevante(ArrayList<Experiencia> experienciaRelevante) {
+        this.experienciaRelevante = experienciaRelevante;
+    }
+    
     // Boilerplate
     public String getNome() {
         return nome;
@@ -60,19 +97,19 @@ public class Curriculo {
         this.publicacoes = publicacoes;
     }
 
-    public int getFone() {
+    public String getFone() {
         return fone;
     }
 
-    public void setFone(int fone) {
+    public void setFone(String fone) {
         this.fone = fone;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 }

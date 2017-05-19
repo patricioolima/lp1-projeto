@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package projetodaniela;
+import static javax.swing.JOptionPane.*;
 
 /**
  *
@@ -40,6 +41,8 @@ public class JFormTitulacao extends javax.swing.JFrame {
         tipo = new javax.swing.JComboBox<>();
         salvar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        area = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Titulação");
@@ -57,9 +60,16 @@ public class JFormTitulacao extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setText("Adicionar Titulação");
 
+        data.setFormatterFactory(JFormApp.mascaraAno());
+
         tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bacharel", "Licenciado", "Tecnólogo" }));
 
         salvar.setText("Salvar");
+        salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvarActionPerformed(evt);
+            }
+        });
 
         cancelar.setText("Cancelar");
         cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -67,6 +77,8 @@ public class JFormTitulacao extends javax.swing.JFrame {
                 cancelarActionPerformed(evt);
             }
         });
+
+        jLabel7.setText("Área:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,13 +101,15 @@ public class JFormTitulacao extends javax.swing.JFrame {
                                 .addComponent(data)
                                 .addComponent(instituicao)
                                 .addComponent(cidade)
-                                .addComponent(estado)))
+                                .addComponent(estado)
+                                .addComponent(area, javax.swing.GroupLayout.Alignment.TRAILING)))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(cancelar)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(salvar)))
-                    .addComponent(jLabel6))
-                .addContainerGap())
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,6 +120,10 @@ public class JFormTitulacao extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(area, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -137,6 +155,30 @@ public class JFormTitulacao extends javax.swing.JFrame {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_cancelarActionPerformed
+
+    private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
+        // Certificar que todos os campos foram preenchidos
+        if ("".equals(data.getText()) ||
+            "".equals(instituicao.getText()) ||
+            "".equals(cidade.getText()) ||
+            "".equals(estado.getText()) ) {
+            showMessageDialog(null, "Todos os campos devem ser preenchidos.", "Erro", ERROR_MESSAGE);
+        }
+        else {
+            Titulacao t = new Titulacao();
+            t.setAnoConclusao(Integer.parseInt(data.getText()));
+            t.setArea(area.getText());
+            t.setInstituicao(instituicao.getText());
+            t.setCidade(cidade.getText());
+            t.setEstado(estado.getText());
+            t.setTipo(tipo.getSelectedItem().toString());
+            JFormCadastro.adicionarTitulacao(t);
+            
+            // Fechar janela
+            setVisible(false);
+            dispose();
+        }
+    }//GEN-LAST:event_salvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,6 +216,7 @@ public class JFormTitulacao extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField area;
     private javax.swing.JButton cancelar;
     private javax.swing.JTextField cidade;
     private javax.swing.JFormattedTextField data;
@@ -185,6 +228,7 @@ public class JFormTitulacao extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JButton salvar;
     private javax.swing.JComboBox<String> tipo;
     // End of variables declaration//GEN-END:variables

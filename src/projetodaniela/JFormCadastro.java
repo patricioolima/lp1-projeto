@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package projetodaniela;
+import java.util.*;
 import static javax.swing.JOptionPane.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,11 +14,98 @@ import static javax.swing.JOptionPane.*;
  */
 public class JFormCadastro extends javax.swing.JFrame {
 
+    // Construtor chamado quando queremos usar esse JForm para editar
+    // um currículo já existente.
+    public JFormCadastro(int indice) {
+        initComponents();
+        status = indice;
+        
+        // Receber dados do currículo já cadastrado e colocar-los
+        // nos textfields.
+        Curriculo c = JFormApp.curriculos.get(indice);
+        
+        nome.setText(c.getNome());
+        endereco.setText(c.getEndereco());
+        fone.setText(c.getFone());
+        email.setText(c.getEmail());
+        cpf.setText(c.getCpf());
+        registroProfissional.setText(c.getRegistroProfissional());
+        publicacoes.setText(c.getPublicacoes());
+        
+        tempTitulacoes = c.getTitulacoes();
+        tempExperienciaDocente = c.getExperienciaDocente();
+        tempExperienciaRelevante = c.getExperienciaRelevante();
+        
+        atualizarTabelas();
+    }
+    
     /**
-     * Creates new form JForm_Consulta
+     * Creates new form JFormCadastro
      */
     public JFormCadastro() {
         initComponents();
+        status = 0;
+        
+        // Re-instanciar os ArrayLists para garantir que toda vez
+        // que esta janela for aberta, eles estejam vazios.
+        tempTitulacoes = new ArrayList<>();
+        tempExperienciaDocente = new ArrayList<>();
+        tempExperienciaRelevante = new ArrayList<>();
+        
+        atualizarTabelas();
+    }
+    
+    // ArrayLists temporários que serão repassados ao currículo sendo
+    // cadastrado. São static para poderem ser manuseados a partir de outros
+    // JForms.
+    public static ArrayList<Titulacao> tempTitulacoes;
+    public static ArrayList<Experiencia> tempExperienciaDocente;
+    public static ArrayList<Experiencia> tempExperienciaRelevante;
+    
+    // Esse mesmo JForm é usado para cadastrar novos currículos e alterar
+    // currículos já existentes. Para saber qual estamos fazendo, usamos
+    // uma variável de classe. 0 = novo currículo, qualquer outro valor =
+    // índice do currículo que estamos editando.
+    public static int status;
+    
+    // Popular os JTables com os conteúdos dos ArrayLists temporários.
+    public void atualizarTabelas() {
+        // Atualizar os JTables
+        DefaultTableModel modelTitulacao = (DefaultTableModel)titulacao.getModel();
+        modelTitulacao.setRowCount(0);
+        
+        for (Titulacao t : tempTitulacoes) {
+            Object[] newRow = {t.toString()};
+            modelTitulacao.addRow(newRow);
+        }
+        
+        DefaultTableModel modelExperienciaDocente = (DefaultTableModel)experienciaDocente.getModel();
+        modelExperienciaDocente.setRowCount(0);
+        
+        for (Experiencia e : tempExperienciaDocente) {
+            Object[] newRow = {e.toString()};
+            modelExperienciaDocente.addRow(newRow);
+        }
+        
+        DefaultTableModel modelExperienciaRelevante = (DefaultTableModel)experienciaRelevante.getModel();
+        modelExperienciaRelevante.setRowCount(0);
+        
+        for (Experiencia e : tempExperienciaRelevante) {
+            Object[] newRow = {e.toString()};
+            modelExperienciaRelevante.addRow(newRow);
+        }
+    }
+    
+    public static void adicionarTitulacao(Titulacao t) {
+        tempTitulacoes.add(t);
+    }
+    
+    public static void adicionarExperienciaDocente(Experiencia e) {
+        tempExperienciaDocente.add(e);
+    }
+    
+    public static void adicionarExperienciaRelevante(Experiencia e) {
+        tempExperienciaRelevante.add(e);
     }
 
     /**
@@ -60,6 +149,7 @@ public class JFormCadastro extends javax.swing.JFrame {
         removerExperienciaDocente = new javax.swing.JButton();
         adicionarExperienciaRelevante = new javax.swing.JButton();
         removerExperienciaRelevante = new javax.swing.JButton();
+        atualizar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,6 +180,10 @@ public class JFormCadastro extends javax.swing.JFrame {
         cpfLabel.setText("CPF:");
 
         registroProfissionalLabel.setText("Registro Profissional:");
+
+        fone.setFormatterFactory(JFormApp.mascaraTelefone());
+
+        cpf.setFormatterFactory(JFormApp.mascaraCPF());
 
         titulacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -286,6 +380,13 @@ public class JFormCadastro extends javax.swing.JFrame {
             }
         });
 
+        atualizar.setText("Atualizar");
+        atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -298,6 +399,8 @@ public class JFormCadastro extends javax.swing.JFrame {
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(atualizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(salvar))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(adicionarExperienciaDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -332,7 +435,9 @@ public class JFormCadastro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(salvar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(salvar)
+                    .addComponent(atualizar))
                 .addGap(6, 6, 6))
         );
 
@@ -356,12 +461,26 @@ public class JFormCadastro extends javax.swing.JFrame {
             novoCurriculo.setEndereco(endereco.getText());
             novoCurriculo.setEmail(email.getText());
             novoCurriculo.setRegistroProfissional(registroProfissional.getText());
-            novoCurriculo.setFone(Integer.parseInt(fone.getText()));
-            novoCurriculo.setCpf(Integer.parseInt(cpf.getText()));
+            novoCurriculo.setFone(fone.getText());
+            novoCurriculo.setCpf(cpf.getText());
+            novoCurriculo.setPublicacoes(publicacoes.getText());
+            novoCurriculo.setTitulacoes(tempTitulacoes);
+            novoCurriculo.setExperienciaDocente(tempExperienciaDocente);
+            novoCurriculo.setExperienciaRelevante(tempExperienciaRelevante);
 
-            // Cadastrar no ArrayList
-            JFormApp.curriculos.add(novoCurriculo);
-            showMessageDialog(null, "Cadastro realizado com sucesso.", "Sucesso", 1);
+            // Cadastrar no ArrayList, dependendo do caso
+            if (status == 0) {
+                // Novo currículo
+                JFormApp.curriculos.add(novoCurriculo);
+                showMessageDialog(null, "Cadastro realizado com sucesso.", "Sucesso", 1);
+            }
+            else {
+                // Editando currículo já existente
+                JFormApp.curriculos.remove(status);
+                JFormApp.curriculos.add(status, novoCurriculo);
+                showMessageDialog(null, "Cadastro realizado com sucesso.", "Sucesso", 1);
+            }
+            
 
             // Fechar janela
             setVisible(false);
@@ -370,15 +489,27 @@ public class JFormCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_salvarActionPerformed
 
     private void removerTitulacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerTitulacaoActionPerformed
-        // TODO add your handling code here:
+        if (titulacao.getSelectedRow() != -1) {
+            tempTitulacoes.remove(titulacao.getSelectedRow());
+        }
+        
+        atualizarTabelas();
     }//GEN-LAST:event_removerTitulacaoActionPerformed
 
     private void removerExperienciaDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerExperienciaDocenteActionPerformed
-        // TODO add your handling code here:
+        if (experienciaDocente.getSelectedRow() != -1) {
+            tempExperienciaDocente.remove(experienciaDocente.getSelectedRow());
+        }
+        
+        atualizarTabelas();
     }//GEN-LAST:event_removerExperienciaDocenteActionPerformed
 
     private void removerExperienciaRelevanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerExperienciaRelevanteActionPerformed
-        // TODO add your handling code here:
+        if (experienciaRelevante.getSelectedRow() != -1) {
+            tempExperienciaRelevante.remove(experienciaRelevante.getSelectedRow());
+        }
+        
+        atualizarTabelas();
     }//GEN-LAST:event_removerExperienciaRelevanteActionPerformed
 
     private void adicionarTitulacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarTitulacaoActionPerformed
@@ -388,16 +519,20 @@ public class JFormCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_adicionarTitulacaoActionPerformed
 
     private void adicionarExperienciaDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarExperienciaDocenteActionPerformed
-        JFormExperiencia janelaExperiencia = new JFormExperiencia();
+        JFormExperiencia janelaExperiencia = new JFormExperiencia(0);
         pack();
         janelaExperiencia.setVisible(true);
     }//GEN-LAST:event_adicionarExperienciaDocenteActionPerformed
 
     private void adicionarExperienciaRelevanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarExperienciaRelevanteActionPerformed
-        JFormExperiencia janelaExperiencia = new JFormExperiencia();
+        JFormExperiencia janelaExperiencia = new JFormExperiencia(1);
         pack();
         janelaExperiencia.setVisible(true);
     }//GEN-LAST:event_adicionarExperienciaRelevanteActionPerformed
+
+    private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
+        atualizarTabelas();
+    }//GEN-LAST:event_atualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -441,6 +576,7 @@ public class JFormCadastro extends javax.swing.JFrame {
     private javax.swing.JButton adicionarExperienciaDocente;
     private javax.swing.JButton adicionarExperienciaRelevante;
     private javax.swing.JButton adicionarTitulacao;
+    private javax.swing.JButton atualizar;
     private javax.swing.JLabel cabecalho1;
     private javax.swing.JLabel cabecalho3;
     private javax.swing.JFormattedTextField cpf;

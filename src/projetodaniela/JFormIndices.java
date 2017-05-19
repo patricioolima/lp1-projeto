@@ -24,7 +24,7 @@ public class JFormIndices extends javax.swing.JFrame {
         int indice = 0;
         
         for (Curriculo c : JFormApp.curriculos) {
-            Object[] newRow = {indice, c.getNome(), c.getEmail()};
+            Object[] newRow = {indice+1, c.getNome(), c.getEmail()};
             model.addRow(newRow);
             
             indice++;
@@ -41,16 +41,47 @@ public class JFormIndices extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        curriculos = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
+        consultar = new javax.swing.JButton();
+        editar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Lista de Currículos");
 
-        tabela.setModel(tabela.getModel());
-        jScrollPane1.setViewportView(tabela);
+        tabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Indice", "Nome", "Email"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        curriculos.setViewportView(tabela);
+
+        consultar.setText("Ver Detalhes");
+        consultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarActionPerformed(evt);
+            }
+        });
+
+        editar.setText("Editar");
+        editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,7 +93,12 @@ public class JFormIndices extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
+                    .addComponent(curriculos, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(editar)
+                        .addGap(18, 18, 18)
+                        .addComponent(consultar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -71,12 +107,32 @@ public class JFormIndices extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(curriculos, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(consultar)
+                    .addComponent(editar))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
+        if (tabela.getSelectedRow() != -1) {
+            JFormConsulta janelaConsulta = new JFormConsulta(tabela.getSelectedRow());
+            pack();
+            janelaConsulta.setVisible(true);
+        }
+    }//GEN-LAST:event_consultarActionPerformed
+
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+        if (tabela.getSelectedRow() != -1) {
+            JFormCadastro janelaCadastro = new JFormCadastro(tabela.getSelectedRow());
+            pack();
+            janelaCadastro.setVisible(true);
+        }
+    }//GEN-LAST:event_editarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,8 +170,10 @@ public class JFormIndices extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton consultar;
+    private javax.swing.JScrollPane curriculos;
+    private javax.swing.JButton editar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabela;
     // End of variables declaration//GEN-END:variables
 }

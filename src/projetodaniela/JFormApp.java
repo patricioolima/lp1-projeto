@@ -5,6 +5,7 @@
  */
 package projetodaniela;
 import java.util.*;
+import javax.swing.text.*;
 
 /**
  *
@@ -12,8 +13,56 @@ import java.util.*;
  */
 public class JFormApp extends javax.swing.JFrame {
 
-    //
+    // ArrayList dos currículos
     public static ArrayList<Curriculo> curriculos = new ArrayList<>();
+    
+    // Máscaras para os JFOrmattedTextFields
+    public static DefaultFormatterFactory mascaraData(){
+        MaskFormatter mask = null;
+        
+        try {
+            mask = new MaskFormatter("##/##/####");
+        } catch(Exception pe) {}
+        
+        DefaultFormatterFactory factory = new DefaultFormatterFactory(mask, mask);
+        return factory;
+    }
+    
+    public static DefaultFormatterFactory mascaraAno(){
+        MaskFormatter mask = null;
+        
+        try {
+            mask = new MaskFormatter("####");
+            mask.setValueContainsLiteralCharacters(false);
+        } catch(Exception pe) {}
+        
+        DefaultFormatterFactory factory = new DefaultFormatterFactory(mask, mask);
+        return factory;
+    }
+    
+    public static DefaultFormatterFactory mascaraCPF(){
+        MaskFormatter mask = null;
+        
+        try {
+            mask = new MaskFormatter("###.###.###-##");
+            mask.setValueContainsLiteralCharacters(false);
+        } catch(Exception pe) {}
+        
+        DefaultFormatterFactory factory = new DefaultFormatterFactory(mask, mask);
+        return factory;
+    }
+    
+    public static DefaultFormatterFactory mascaraTelefone(){
+        MaskFormatter mask = null;
+        
+        try {
+            mask = new MaskFormatter("(##)#####-####");
+            mask.setValueContainsLiteralCharacters(false);
+        } catch(Exception pe) {}
+        
+        DefaultFormatterFactory factory = new DefaultFormatterFactory(mask, mask);
+        return factory;
+    }
     
     /**
      * Creates new form MainApp
@@ -53,7 +102,7 @@ public class JFormApp extends javax.swing.JFrame {
         jMenu2.add(cadastrar);
 
         gerarIndice.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
-        gerarIndice.setText("Gerar índice dos currículos");
+        gerarIndice.setText("Ver Todos Currículos");
         gerarIndice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gerarIndiceActionPerformed(evt);
@@ -159,6 +208,14 @@ public class JFormApp extends javax.swing.JFrame {
                 new JFormApp().setVisible(true);
             }
         });
+        
+        // Cadastrar alguns currículos temporários, só para testar.
+        for (int i = 0; i < 10; i++) {
+            Curriculo c = new Curriculo();
+            c.setNome("Nome" + i);
+            c.setEmail("Email@" + i + ".com");
+            curriculos.add(c);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

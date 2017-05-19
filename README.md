@@ -1,7 +1,11 @@
 ## Projeto Daniela: Cadastro de Currículos
 
-**TODO:** Implementar funcionalidade dos forms.
+**OBS:** No momento, titulações, experiência e publicações não são campos obrigatórios. Não sei se devem ser.
 
-**TODO:** Implementar máscaras e validação para os campos telefone e CPF no JForm do cadastro.
+**TODO:** Implementar serialização (salvar em arquivo)
 
-**TODO:** Decidir como será feita a consulta. Procurar por nome? Índice?
+**TODO:** Os JTables só atualizam ao clicar o botão atualizar. Descobrir como fazer para eles atualizarem automaticamente ao cadastrar um novo item.
+
+**TODO:** A lista de currículos (JFormIndices) não atualiza automaticamente ao alterar um currículo.
+
+**TODO:** Remover o código que adiciona os 10 currículos de teste quando estiver tudo OK.

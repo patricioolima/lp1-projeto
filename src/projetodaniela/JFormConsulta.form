@@ -92,17 +92,21 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="nome" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="endereco" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="fone" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="email" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="nome" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="endereco" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="fone" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="email" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="321" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
                           <Component id="cpf" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="registroProfissional" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="109" max="32767" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <Component id="cabecalho1" min="-2" max="-2" attributes="0"/>

@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package projetodaniela;
+import static javax.swing.JOptionPane.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -11,11 +13,78 @@ package projetodaniela;
  */
 public class JFormConsulta extends javax.swing.JFrame {
 
+    // Atualiza todos os dados do JFormConsulta
+    public void atualizar(int indice) {
+        // Pegar currículo no ArrayList e atualizar os campos
+        Curriculo c = JFormApp.curriculos.get(indice);
+        
+        nome.setText("Nome: " + c.getNome());
+        endereco.setText("Endereço: " + c.getEndereco());
+        fone.setText("Fone: " + c.getFone());
+        email.setText("E-mail: " + c.getEmail());
+        cpf.setText("CPF: " + c.getCpf());
+        registroProfissional.setText("Registro Profissional: " + c.getRegistroProfissional());
+        publicacoes.setText(c.getPublicacoes());
+        
+        // Preencher os JTables de titulação, experiência docente & experiência relevante
+        DefaultTableModel modelTitulacao = (DefaultTableModel)titulacao.getModel();
+        modelTitulacao.setRowCount(0);
+        
+        for (Titulacao t : c.getTitulacoes()) {
+            Object[] newRow = {t.toString()};
+            modelTitulacao.addRow(newRow);
+        }
+        
+        DefaultTableModel modelExperienciaDocente = (DefaultTableModel)experienciaDocente.getModel();
+        modelExperienciaDocente.setRowCount(0);
+        
+        for (Experiencia e : c.getExperienciaDocente()) {
+            Object[] newRow = {e.toString()};
+            modelExperienciaDocente.addRow(newRow);
+        }
+        
+        DefaultTableModel modelExperienciaRelevante = (DefaultTableModel)experienciaRelevante.getModel();
+        modelExperienciaRelevante.setRowCount(0);
+        
+        for (Experiencia e : c.getExperienciaRelevante()) {
+            Object[] newRow = {e.toString()};
+            modelExperienciaRelevante.addRow(newRow);
+        }
+    }
+    
+    // Construtor extra para quando não precisamos receber o índice do usuário
+    // (consulta está sendo realizada pelo JFormIndices)
+    public JFormConsulta(int indice) {
+        initComponents();
+        atualizar(indice);
+    }
+    
     /**
-     * Creates new form JForm_Consulta
+     * Creates new form JFormConsulta
      */
     public JFormConsulta() {
         initComponents();
+        
+        // Receber índice do usúario
+        int indice = -1;
+        
+        while (true || indice == -1) {
+            try {
+                indice = Integer.parseInt(showInputDialog("Digite o índice do currículo que deseja consultar:"));
+                
+                // Certificar que existe esse currículo
+                if (indice < 0 || indice >= JFormApp.curriculos.size()) {
+                    throw new Exception();
+                }
+                
+                break;
+            }
+            catch (Exception e) {
+                showMessageDialog(null, "Índice inválido.", "Erro", ERROR_MESSAGE);
+            }
+        }
+        
+        atualizar(indice);
     }
 
     /**
@@ -84,15 +153,17 @@ public class JFormConsulta extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nome)
-                    .addComponent(endereco)
-                    .addComponent(fone)
-                    .addComponent(email)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nome)
+                            .addComponent(endereco)
+                            .addComponent(fone)
+                            .addComponent(email))
+                        .addContainerGap(321, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(cpf)
-                        .addGap(137, 137, 137)
-                        .addComponent(registroProfissional)))
-                .addContainerGap(109, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(registroProfissional))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(cabecalho1)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -263,10 +334,6 @@ public class JFormConsulta extends javax.swing.JFrame {
                 new JFormConsulta().setVisible(true);
             }
         });
-    }
-
-    public static void atualizar() {
-        //nome.setText();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
