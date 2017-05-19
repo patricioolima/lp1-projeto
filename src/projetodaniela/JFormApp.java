@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package projetodaniela;
+import java.io.*;
 import java.util.*;
 import javax.swing.text.*;
 
@@ -15,6 +16,50 @@ public class JFormApp extends javax.swing.JFrame {
 
     // ArrayList dos currículos
     public static ArrayList<Curriculo> curriculos = new ArrayList<>();
+    
+    // Gravar todos os dados em arquivo
+    public static boolean gravarDados() {
+        try {
+            // Abrir o arquivo
+            FileOutputStream fOutput = new FileOutputStream("curriculos.dat");
+            
+            // Abrir o stream de objetos
+            ObjectOutputStream oOutput = new ObjectOutputStream(fOutput);
+            
+            // Escrever todos os currículos
+            oOutput.writeObject(curriculos);
+            
+            // Fechar os streams
+            oOutput.close();
+            fOutput.close();  
+        } catch (Exception e) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    // Ler dados do arquivo
+    public static boolean lerDados() {
+        try {
+            // Abrir o arquivo
+            FileInputStream fInput = new FileInputStream("curriculos.dat");
+            
+            // Abrir o stream de objetos
+            ObjectInputStream oInput = new ObjectInputStream(fInput);
+            
+            // Ler  todos os currículos
+            curriculos = (ArrayList<Curriculo>)oInput.readObject();
+            
+            // Fechar os streams
+            oInput.close();
+            fInput.close();    
+        } catch (Exception e) {
+            return false;
+        }
+        
+        return true;
+    }
     
     // Máscaras para os JFOrmattedTextFields
     public static DefaultFormatterFactory mascaraData(){
@@ -69,6 +114,9 @@ public class JFormApp extends javax.swing.JFrame {
      */
     public JFormApp() {
         initComponents();
+        
+        // Ao inicializar o programa, ler dados do arquivo
+        lerDados();
     }
 
     /**
@@ -89,6 +137,11 @@ public class JFormApp extends javax.swing.JFrame {
         sair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jMenu2.setText("File");
 
@@ -170,9 +223,15 @@ public class JFormApp extends javax.swing.JFrame {
     }//GEN-LAST:event_gerarIndiceActionPerformed
 
     private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
-        // TODO: Salvar dados em arquivo
+        // Ao sair do programa, salvar todos os currículos em arquivo
+        gravarDados();
         System.exit(0);
     }//GEN-LAST:event_sairActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // Ao sair do programa, salvar todos os currículos em arquivo
+        gravarDados();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -208,14 +267,6 @@ public class JFormApp extends javax.swing.JFrame {
                 new JFormApp().setVisible(true);
             }
         });
-        
-        // Cadastrar alguns currículos temporários, só para testar.
-        for (int i = 0; i < 10; i++) {
-            Curriculo c = new Curriculo();
-            c.setNome("Nome" + i);
-            c.setEmail("Email@" + i + ".com");
-            curriculos.add(c);
-        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,12 +5,13 @@
  */
 package projetodaniela;
 import java.util.*;
+import java.io.*;
 
 /**
  *
  * @author aluno
  */
-public class Curriculo {
+public class Curriculo implements Serializable {
     // Atributos
     private String nome, endereco, email, registroProfissional, publicacoes, fone, cpf;
     //private int fone, cpf;
