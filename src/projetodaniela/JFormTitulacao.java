@@ -158,7 +158,7 @@ public class JFormTitulacao extends javax.swing.JFrame {
 
     private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
         // Certificar que todos os campos foram preenchidos
-        if ("".equals(data.getText()) ||
+        if ("    ".equals(data.getText()) ||
             "".equals(instituicao.getText()) ||
             "".equals(cidade.getText()) ||
             "".equals(estado.getText()) ) {

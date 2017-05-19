@@ -7,6 +7,7 @@ package projetodaniela;
 import java.io.*;
 import java.util.*;
 import javax.swing.text.*;
+import static javax.swing.JOptionPane.*;
 
 /**
  *
@@ -174,6 +175,11 @@ public class JFormApp extends javax.swing.JFrame {
 
         alterar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         alterar.setText("Alterar Currículo");
+        alterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alterarActionPerformed(evt);
+            }
+        });
         jMenu2.add(alterar);
 
         sair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
@@ -211,9 +217,29 @@ public class JFormApp extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastrarActionPerformed
 
     private void consultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarActionPerformed
-        JFormConsulta janelaConsulta = new JFormConsulta();
-        pack();
-        janelaConsulta.setVisible(true);
+        // Receber índice do usúario
+        int indice = -1;
+
+        try {
+            indice = Integer.parseInt(showInputDialog("Digite o índice do currículo que deseja consultar:")) - 1;
+
+            // Caso seja um número inválido, jogar exceção
+            if (indice < 0 || indice >= JFormApp.curriculos.size()) {
+                throw new Exception();
+            }
+        }
+        catch (Exception e) {
+            indice = -1;
+        }
+        
+        // Caso seja válido, abrir a janela e passar o índice como parâmetro
+        if (indice >= 0 && indice <= curriculos.size()) {
+            JFormConsulta janelaConsulta = new JFormConsulta(indice);
+            pack();
+            janelaConsulta.setVisible(true);
+        } else {
+            showMessageDialog(null, "Índice inválido.", "Erro", ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_consultarActionPerformed
 
     private void gerarIndiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarIndiceActionPerformed
@@ -232,6 +258,32 @@ public class JFormApp extends javax.swing.JFrame {
         // Ao sair do programa, salvar todos os currículos em arquivo
         gravarDados();
     }//GEN-LAST:event_formWindowClosing
+
+    private void alterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alterarActionPerformed
+        // Receber índice do usúario
+        int indice = -1;
+
+        try {
+            indice = Integer.parseInt(showInputDialog("Digite o índice do currículo que deseja editar:")) - 1;
+
+            // Caso seja um número inválido, jogar exceção
+            if (indice < 0 || indice >= JFormApp.curriculos.size()) {
+                throw new Exception();
+            }
+        }
+        catch (Exception e) {
+            indice = -1;
+        }
+        
+        // Caso seja válido, abrir a janela e passar o índice como parâmetro
+        if (indice >= 0 && indice <= curriculos.size()) {
+            JFormCadastro janelaCadastro = new JFormCadastro(indice);
+            pack();
+            janelaCadastro.setVisible(true);
+        } else {
+            showMessageDialog(null, "Índice inválido.", "Erro", ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_alterarActionPerformed
 
     /**
      * @param args the command line arguments

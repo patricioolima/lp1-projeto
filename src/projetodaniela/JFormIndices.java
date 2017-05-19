@@ -12,12 +12,10 @@ import javax.swing.table.*; //TableModel;
  */
 public class JFormIndices extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JFormIndices
-     */
-    public JFormIndices() {
-        initComponents();
+    // Atualiza a tabela de currículos.
+    public void atualizar() {
         DefaultTableModel model = (DefaultTableModel)tabela.getModel();
+        model.setRowCount(0);
         
         // Iterar por todos os currículos e adicionar-los
         // ao JTable no formato: indice, nome, email.
@@ -29,6 +27,14 @@ public class JFormIndices extends javax.swing.JFrame {
             
             indice++;
         }
+    }
+    
+    /**
+     * Creates new form JFormIndices
+     */
+    public JFormIndices() {
+        initComponents();
+        atualizar();
     }
 
     /**
@@ -47,6 +53,13 @@ public class JFormIndices extends javax.swing.JFrame {
         editar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Lista de Currículos");
@@ -133,6 +146,10 @@ public class JFormIndices extends javax.swing.JFrame {
             janelaCadastro.setVisible(true);
         }
     }//GEN-LAST:event_editarActionPerformed
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        atualizar();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments

@@ -64,27 +64,6 @@ public class JFormConsulta extends javax.swing.JFrame {
      */
     public JFormConsulta() {
         initComponents();
-        
-        // Receber índice do usúario
-        int indice = -1;
-        
-        while (true || indice == -1) {
-            try {
-                indice = Integer.parseInt(showInputDialog("Digite o índice do currículo que deseja consultar:"));
-                
-                // Certificar que existe esse currículo
-                if (indice < 0 || indice >= JFormApp.curriculos.size()) {
-                    throw new Exception();
-                }
-                
-                break;
-            }
-            catch (Exception e) {
-                showMessageDialog(null, "Índice inválido.", "Erro", ERROR_MESSAGE);
-            }
-        }
-        
-        atualizar(indice);
     }
 
     /**
@@ -257,6 +236,7 @@ public class JFormConsulta extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(experienciaRelevante);
 
+        publicacoes.setEditable(false);
         jScrollPane5.setViewportView(publicacoes);
 
         cabecalho3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N

@@ -18,12 +18,13 @@ public class JFormCadastro extends javax.swing.JFrame {
     // um currículo já existente.
     public JFormCadastro(int indice) {
         initComponents();
+
         status = indice;
-        
+
         // Receber dados do currículo já cadastrado e colocar-los
         // nos textfields.
         Curriculo c = JFormApp.curriculos.get(indice);
-        
+
         nome.setText(c.getNome());
         endereco.setText(c.getEndereco());
         fone.setText(c.getFone());
@@ -31,11 +32,11 @@ public class JFormCadastro extends javax.swing.JFrame {
         cpf.setText(c.getCpf());
         registroProfissional.setText(c.getRegistroProfissional());
         publicacoes.setText(c.getPublicacoes());
-        
+
         tempTitulacoes = c.getTitulacoes();
         tempExperienciaDocente = c.getExperienciaDocente();
         tempExperienciaRelevante = c.getExperienciaRelevante();
-        
+
         atualizarTabelas();
     }
     
@@ -64,7 +65,7 @@ public class JFormCadastro extends javax.swing.JFrame {
     
     // Esse mesmo JForm é usado para cadastrar novos currículos e alterar
     // currículos já existentes. Para saber qual estamos fazendo, usamos
-    // uma variável de classe. 0 = novo currículo, qualquer outro valor =
+    // uma variável de classe. -1 = novo currículo, qualquer outro valor =
     // índice do currículo que estamos editando.
     public static int status;
     
@@ -149,7 +150,6 @@ public class JFormCadastro extends javax.swing.JFrame {
         removerExperienciaDocente = new javax.swing.JButton();
         adicionarExperienciaRelevante = new javax.swing.JButton();
         removerExperienciaRelevante = new javax.swing.JButton();
-        atualizar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -165,6 +165,13 @@ public class JFormCadastro extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         cabecalho1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cabecalho1.setText("Dados Pessoais");
@@ -380,13 +387,6 @@ public class JFormCadastro extends javax.swing.JFrame {
             }
         });
 
-        atualizar.setText("Atualizar");
-        atualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                atualizarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -399,8 +399,6 @@ public class JFormCadastro extends javax.swing.JFrame {
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(atualizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(salvar))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(adicionarExperienciaDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -435,9 +433,7 @@ public class JFormCadastro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(salvar)
-                    .addComponent(atualizar))
+                .addComponent(salvar)
                 .addGap(6, 6, 6))
         );
 
@@ -469,7 +465,7 @@ public class JFormCadastro extends javax.swing.JFrame {
             novoCurriculo.setExperienciaRelevante(tempExperienciaRelevante);
 
             // Cadastrar no ArrayList, dependendo do caso
-            if (status == 0) {
+            if (status == -1) {
                 // Novo currículo
                 JFormApp.curriculos.add(novoCurriculo);
                 showMessageDialog(null, "Cadastro realizado com sucesso.", "Sucesso", 1);
@@ -530,9 +526,9 @@ public class JFormCadastro extends javax.swing.JFrame {
         janelaExperiencia.setVisible(true);
     }//GEN-LAST:event_adicionarExperienciaRelevanteActionPerformed
 
-    private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         atualizarTabelas();
-    }//GEN-LAST:event_atualizarActionPerformed
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
@@ -576,7 +572,6 @@ public class JFormCadastro extends javax.swing.JFrame {
     private javax.swing.JButton adicionarExperienciaDocente;
     private javax.swing.JButton adicionarExperienciaRelevante;
     private javax.swing.JButton adicionarTitulacao;
-    private javax.swing.JButton atualizar;
     private javax.swing.JLabel cabecalho1;
     private javax.swing.JLabel cabecalho3;
     private javax.swing.JFormattedTextField cpf;
