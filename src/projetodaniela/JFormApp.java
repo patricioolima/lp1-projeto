@@ -54,15 +54,16 @@ public class JFormApp extends javax.swing.JFrame {
             
             // Fechar os streams
             oInput.close();
-            fInput.close();    
+            fInput.close();
         } catch (Exception e) {
+            showMessageDialog(null, "Não foi possível ler curriculos.dat", "Erro", ERROR_MESSAGE);
             return false;
         }
         
         return true;
     }
     
-    // Máscaras para os JFOrmattedTextFields
+    // Máscaras para os JFormattedTextFields
     public static DefaultFormatterFactory mascaraData(){
         MaskFormatter mask = null;
         
@@ -110,9 +111,7 @@ public class JFormApp extends javax.swing.JFrame {
         return factory;
     }
     
-    /**
-     * Creates new form MainApp
-     */
+    // Construtor do app
     public JFormApp() {
         initComponents();
         
@@ -138,13 +137,14 @@ public class JFormApp extends javax.swing.JFrame {
         sair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro de Currículos");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
         });
 
-        jMenu2.setText("File");
+        jMenu2.setText("Opções");
 
         cadastrar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         cadastrar.setText("Cadastrar Novo Currículo");
