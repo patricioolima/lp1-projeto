@@ -56,7 +56,7 @@ public class JFormApp extends javax.swing.JFrame {
             oInput.close();
             fInput.close();
         } catch (Exception e) {
-            showMessageDialog(null, "Não foi possível ler curriculos.dat", "Erro", ERROR_MESSAGE);
+            showMessageDialog(null, "Não foi possível ler curriculos.dat\nExceção: " + e.getMessage(), "Erro", ERROR_MESSAGE);
             return false;
         }
         
