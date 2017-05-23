@@ -115,6 +115,9 @@ public class JFormApp extends javax.swing.JFrame {
     public JFormApp() {
         initComponents();
         
+        // Centralizar janela
+        setLocationRelativeTo(null);
+        
         // Ao inicializar o programa, ler dados do arquivo
         lerDados();
     }

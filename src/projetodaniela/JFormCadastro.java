@@ -19,6 +19,10 @@ public class JFormCadastro extends javax.swing.JFrame {
     public JFormCadastro(int indice) {
         initComponents();
 
+        // Centralizar janela
+        setLocationRelativeTo(null);
+        
+        // Qual currículo estamos editando
         status = indice;
 
         // Receber dados do currículo já cadastrado e colocar-los
@@ -44,6 +48,9 @@ public class JFormCadastro extends javax.swing.JFrame {
     public JFormCadastro() {
         initComponents();
         status = -1;
+        
+        // Centralizar janela
+        setLocationRelativeTo(null);
         
         // Re-instanciar os ArrayLists para garantir que toda vez
         // que esta janela for aberta, eles estejam vazios.

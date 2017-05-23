@@ -15,6 +15,9 @@ public class JFormTitulacao extends javax.swing.JFrame {
     // Construtor
     public JFormTitulacao() {
         initComponents();
+        
+        // Centralizar janela
+        setLocationRelativeTo(null);
     }
 
     /**

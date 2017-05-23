@@ -32,6 +32,11 @@ public class JFormIndices extends javax.swing.JFrame {
     // Construtor
     public JFormIndices() {
         initComponents();
+        
+        // Centralizar janela
+        setLocationRelativeTo(null);
+        
+        // Atualizar o JTable dos currículos
         atualizar();
     }
 

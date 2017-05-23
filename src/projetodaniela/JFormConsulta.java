@@ -56,12 +56,20 @@ public class JFormConsulta extends javax.swing.JFrame {
     // (consulta está sendo realizada pelo JFormIndices)
     public JFormConsulta(int indice) {
         initComponents();
+        
+        // Centralizar janela
+        setLocationRelativeTo(null);
+        
+        // Atualizar os labels
         atualizar(indice);
     }
     
     // Construtor default
     public JFormConsulta() {
         initComponents();
+        
+        // Centralizar janela
+        setLocationRelativeTo(null);
     }
 
     /**

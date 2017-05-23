@@ -20,6 +20,11 @@ public class JFormExperiencia extends javax.swing.JFrame {
     // Construtor
     public JFormExperiencia(int t) {
         initComponents();
+        
+        // Centralizar janela
+        setLocationRelativeTo(null);
+        
+        // Repassar parametro para nossa variável de classe anterior
         tipo = t;
     }
 
