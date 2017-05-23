@@ -14,6 +14,19 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JFormCadastro extends javax.swing.JFrame {
 
+    // ArrayLists temporários que serão repassados ao currículo sendo
+    // cadastrado. São static para poderem ser manuseados a partir de outros
+    // JForms.
+    private static ArrayList<Titulacao> tempTitulacoes;
+    private static ArrayList<Experiencia> tempExperienciaDocente;
+    private static ArrayList<Experiencia> tempExperienciaRelevante;
+    
+    // Esse mesmo JForm é usado para cadastrar novos currículos e alterar
+    // currículos já existentes. Para saber qual estamos fazendo, usamos
+    // uma variável de classe. -1 = novo currículo, qualquer outro valor =
+    // índice do currículo que estamos editando.
+    private static int status;
+    
     // Construtor chamado quando queremos usar esse JForm para editar
     // um currículo já existente.
     public JFormCadastro(int indice) {
@@ -61,21 +74,8 @@ public class JFormCadastro extends javax.swing.JFrame {
         atualizarTabelas();
     }
     
-    // ArrayLists temporários que serão repassados ao currículo sendo
-    // cadastrado. São static para poderem ser manuseados a partir de outros
-    // JForms.
-    public static ArrayList<Titulacao> tempTitulacoes;
-    public static ArrayList<Experiencia> tempExperienciaDocente;
-    public static ArrayList<Experiencia> tempExperienciaRelevante;
-    
-    // Esse mesmo JForm é usado para cadastrar novos currículos e alterar
-    // currículos já existentes. Para saber qual estamos fazendo, usamos
-    // uma variável de classe. -1 = novo currículo, qualquer outro valor =
-    // índice do currículo que estamos editando.
-    public static int status;
-    
     // Popular os JTables com os conteúdos dos ArrayLists temporários.
-    public void atualizarTabelas() {
+    private void atualizarTabelas() {
         // Atualizar os JTables
         DefaultTableModel modelTitulacao = (DefaultTableModel)titulacao.getModel();
         modelTitulacao.setRowCount(0);

@@ -15,7 +15,7 @@ public class JFormExperiencia extends javax.swing.JFrame {
     // Esse mesmo JForm é reutilizado para adicionar experiência docente
     // tanto quanto relevante. Para diferenciar, usamos uma variável de classe:
     // 0 - doscente, 1 - relevante.
-    public static int tipo;
+    private static int tipo;
     
     // Construtor
     public JFormExperiencia(int t) {

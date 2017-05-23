@@ -13,7 +13,7 @@ import javax.swing.table.*; //TableModel;
 public class JFormIndices extends javax.swing.JFrame {
 
     // Atualiza a tabela de currículos.
-    public void atualizar() {
+    private void atualizar() {
         DefaultTableModel model = (DefaultTableModel)tabela.getModel();
         model.setRowCount(0);
         

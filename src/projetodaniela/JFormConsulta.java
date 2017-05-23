@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 public class JFormConsulta extends javax.swing.JFrame {
 
     // Atualiza todos os dados do JFormConsulta
-    public void atualizar(int indice) {
+    private void atualizar(int indice) {
         // Pegar currículo no ArrayList e atualizar os campos
         Curriculo c = JFormApp.curriculos.get(indice);
         
