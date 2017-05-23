@@ -1,2 +1,16 @@
 # Ignorar curriculos salvos.
 curriculos.dat
+
+# Arquivos netbeans
+nbproject/private/
+build/
+nbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+*.class
+*.jar
+*.war
+*.ear
