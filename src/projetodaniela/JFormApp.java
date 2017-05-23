@@ -30,6 +30,10 @@ public class JFormApp extends javax.swing.JFrame {
             // Escrever todos os currículos
             oOutput.writeObject(curriculos);
             
+            // Chamar método flush nos streams
+            oOutput.flush();
+            fOutput.flush();
+            
             // Fechar os streams
             oOutput.close();
             fOutput.close();  
@@ -56,6 +60,7 @@ public class JFormApp extends javax.swing.JFrame {
             oInput.close();
             fInput.close();
         } catch (Exception e) {
+            // Deu algum erro na leitura. Avisar usuário qual o motivo do erro
             showMessageDialog(null, "Não foi possível ler curriculos.dat:\n" + e.getMessage(), "Aviso", WARNING_MESSAGE);
             return false;
         }
