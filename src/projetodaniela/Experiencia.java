@@ -5,12 +5,13 @@
  */
 package projetodaniela;
 import java.util.Calendar;
+import java.io.Serializable;
 
 /**
  *
  * @author aluno
  */
-public class Experiencia {
+public class Experiencia implements Serializable {
     // Atributos
     private Calendar dataInicio;
     private Calendar dataTermino;

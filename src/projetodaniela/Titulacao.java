@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 package projetodaniela;
+import java.io.Serializable;
 
 /**
  *
  * @author aluno
  */
-public class Titulacao {
+public class Titulacao implements Serializable {
     // Atributos
     // Obs: varíavel tipo pode ser somente: Bacharel / Licenciado / Tecnólogo
     private int anoConclusao;
