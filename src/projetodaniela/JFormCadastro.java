@@ -127,7 +127,6 @@ public class JFormCadastro extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        cabecalho1 = new javax.swing.JLabel();
         nomeLabel = new javax.swing.JLabel();
         enderecoLabel = new javax.swing.JLabel();
         foneLabel = new javax.swing.JLabel();
@@ -179,9 +178,6 @@ public class JFormCadastro extends javax.swing.JFrame {
             public void windowLostFocus(java.awt.event.WindowEvent evt) {
             }
         });
-
-        cabecalho1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        cabecalho1.setText("Dados Pessoais");
 
         nomeLabel.setText("Nome:");
 
@@ -277,31 +273,26 @@ public class JFormCadastro extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(registroProfissionalLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(registroProfissional))
+                        .addComponent(registroProfissional, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(foneLabel)
                             .addComponent(emailLabel))
-                        .addGap(29, 29, 29)
+                        .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fone)
                             .addComponent(email)))))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cabecalho1)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(adicionarTitulacao, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(removerTitulacao, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(adicionarTitulacao, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(removerTitulacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(cabecalho1)
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nomeLabel)
                     .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -423,7 +414,6 @@ public class JFormCadastro extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -438,8 +428,8 @@ public class JFormCadastro extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(cabecalho3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(salvar)
                 .addGap(6, 6, 6))
         );
@@ -490,14 +480,6 @@ public class JFormCadastro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_salvarActionPerformed
 
-    private void removerTitulacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerTitulacaoActionPerformed
-        if (titulacao.getSelectedRow() != -1) {
-            tempTitulacoes.remove(titulacao.getSelectedRow());
-        }
-        
-        atualizarTabelas();
-    }//GEN-LAST:event_removerTitulacaoActionPerformed
-
     private void removerExperienciaDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerExperienciaDocenteActionPerformed
         if (experienciaDocente.getSelectedRow() != -1) {
             tempExperienciaDocente.remove(experienciaDocente.getSelectedRow());
@@ -513,12 +495,6 @@ public class JFormCadastro extends javax.swing.JFrame {
         
         atualizarTabelas();
     }//GEN-LAST:event_removerExperienciaRelevanteActionPerformed
-
-    private void adicionarTitulacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarTitulacaoActionPerformed
-        JFormTitulacao janelaTitulacao = new JFormTitulacao();
-        pack();
-        janelaTitulacao.setVisible(true);
-    }//GEN-LAST:event_adicionarTitulacaoActionPerformed
 
     private void adicionarExperienciaDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarExperienciaDocenteActionPerformed
         JFormExperiencia janelaExperiencia = new JFormExperiencia(0);
@@ -536,11 +512,24 @@ public class JFormCadastro extends javax.swing.JFrame {
         atualizarTabelas();
     }//GEN-LAST:event_formWindowGainedFocus
 
+    private void adicionarTitulacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarTitulacaoActionPerformed
+        JFormTitulacao janelaTitulacao = new JFormTitulacao();
+        pack();
+        janelaTitulacao.setVisible(true);
+    }//GEN-LAST:event_adicionarTitulacaoActionPerformed
+
+    private void removerTitulacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerTitulacaoActionPerformed
+        if (titulacao.getSelectedRow() != -1) {
+            tempTitulacoes.remove(titulacao.getSelectedRow());
+        }
+
+        atualizarTabelas();
+    }//GEN-LAST:event_removerTitulacaoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adicionarExperienciaDocente;
     private javax.swing.JButton adicionarExperienciaRelevante;
     private javax.swing.JButton adicionarTitulacao;
-    private javax.swing.JLabel cabecalho1;
     private javax.swing.JLabel cabecalho3;
     private javax.swing.JFormattedTextField cpf;
     private javax.swing.JLabel cpfLabel;
