@@ -27,11 +27,11 @@ public class Experiencia implements Serializable {
     
     // Formata o Calendar em DD/MM/AAAA, utilizado no toString
     public String dataInicio() {
-        return dataInicio.get(Calendar.DATE) + "/" + dataInicio.get(Calendar.MONTH) + "/" + dataInicio.get(Calendar.YEAR);
+        return dataInicio.get(Calendar.DATE) + "/" + (dataInicio.get(Calendar.MONTH) + 1) + "/" + dataInicio.get(Calendar.YEAR);
     }
     
     public String dataTermino() {
-        return dataTermino.get(Calendar.DATE) + "/" + dataTermino.get(Calendar.MONTH) + "/" + dataTermino.get(Calendar.YEAR);
+        return dataTermino.get(Calendar.DATE) + "/" + (dataTermino.get(Calendar.MONTH) + 1) + "/" + dataTermino.get(Calendar.YEAR);
     }
     
     // Boilerplate
@@ -41,7 +41,7 @@ public class Experiencia implements Serializable {
 
     public void setDataInicio(String dataInicio) {  
         int dia = Integer.parseInt(dataInicio.substring(0, 2));
-        int mes = Integer.parseInt(dataInicio.substring(3, 5));
+        int mes = Integer.parseInt(dataInicio.substring(3, 5)) - 1;
         int ano = Integer.parseInt(dataInicio.substring(6));
         
         Calendar c = Calendar.getInstance();
@@ -55,7 +55,7 @@ public class Experiencia implements Serializable {
 
     public void setDataTermino(String dataTermino) {
         int dia = Integer.parseInt(dataTermino.substring(0, 2));
-        int mes = Integer.parseInt(dataTermino.substring(3, 5));
+        int mes = Integer.parseInt(dataTermino.substring(3, 5)) - 1;
         int ano = Integer.parseInt(dataTermino.substring(6));
         
         Calendar c = Calendar.getInstance();
