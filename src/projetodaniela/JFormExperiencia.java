@@ -166,6 +166,17 @@ public class JFormExperiencia extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
+        // Interpretar a data. Usado para checagem posterior.
+        int diaI, mesI, diaT, mesT;
+        diaI = mesI = diaT = mesT = -1;
+        
+        try {
+            diaI = Integer.parseInt(dataInicio.getText().substring(0, 2));
+            mesI = Integer.parseInt(dataInicio.getText().substring(3, 5));
+            diaT = Integer.parseInt(dataTermino.getText().substring(0, 2));
+            mesT = Integer.parseInt(dataTermino.getText().substring(3, 5));
+        } catch (Exception e) {}
+
         // Certificar que todos os campos foram preenchidos
         if ("  /  /    ".equals(dataInicio.getText()) ||
             "  /  /    ".equals(dataTermino.getText()) ||
@@ -175,6 +186,12 @@ public class JFormExperiencia extends javax.swing.JFrame {
             "".equals(estado.getText()) ) {
             showMessageDialog(null, "Todos os campos devem ser preenchidos.", "Erro", ERROR_MESSAGE);
         }
+        // Certificar que a data é válida
+        else if (diaI < 1 || diaI > 31 || diaT < 1 || diaT > 31 ||
+                 mesI < 1 || mesI > 12 || mesT < 1 || mesT > 12) {
+            showMessageDialog(null, "Data inválida.", "Erro", ERROR_MESSAGE);
+        }
+        // Tudo OK para cadastrar
         else {
             Experiencia e = new Experiencia();
             e.setDataInicio(dataInicio.getText());
@@ -192,8 +209,7 @@ public class JFormExperiencia extends javax.swing.JFrame {
                     JFormCadastro.adicionarExperienciaRelevante(e);
                     break;
                 default:
-                    // wtf
-                    System.exit(-1);
+                    showMessageDialog(null, "Não foi possível cadastrar experiência.", "Erro", ERROR_MESSAGE);
             }
             
             // Fechar janela
